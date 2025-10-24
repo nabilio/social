@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Test Google Metadata</title>
+</head>
+<body>
+    <h1>Test de récupération des métadonnées Google</h1>
+    <button onclick="testMetadata()">Tester</button>
+    <pre id="output"></pre>
+
+    <script type="module">
+        import { createClient } from 'https://esm.sh/@supabase/supabase-js@2'
+
+        const supabase = createClient(
+            'https://0ec90b57d6e95fcbda19832f.supabase.co',
+            'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJib2x0IiwicmVmIjoiMGVjOTBiNTdkNmU5NWZjYmRhMTk4MzJmIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NTg4ODE1NzQsImV4cCI6MTc1ODg4MTU3NH0.9I8-U0x86Ak8t2DGaIk0HfvTSLsAyzdnz-Nw00mMkKw'
+        )
+
+        window.testMetadata = async function() {
+            const output = document.getElementById('output')
+            try {
+                const { data, error } = await supabase.auth.getUser()
+                if (error) throw error
+
+                output.textContent = JSON.stringify({
+                    email: data.user.email,
+                    metadata: data.user.user_metadata,
+                    app_metadata: data.user.app_metadata
+                }, null, 2)
+            } catch (err) {
+                output.textContent = 'Error: ' + err.message
+            }
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,79 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --toast-bg: #ffffff;
+    --toast-color: #374151;
+  }
+  
+  .dark {
+    --toast-bg: #1f2937;
+    --toast-color: #f3f4f6;
+  }
+  
+  /* Mobile-first responsive design */
+  html {
+    font-size: 16px;
+  }
+  
+  @media (max-width: 640px) {
+    html {
+      font-size: 14px;
+    }
+  }
+}
+
+@layer utilities {
+  .line-clamp-2 {
+    overflow: hidden;
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 2;
+  }
+  
+  .line-clamp-3 {
+    overflow: hidden;
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 3;
+  }
+  
+  /* Mobile optimizations */
+  @media (max-width: 640px) {
+    /* Ensure buttons are touch-friendly */
+    .touch-target {
+      min-height: 44px;
+      min-width: 44px;
+    }
+    
+    /* Better spacing for mobile */
+    .mobile-spacing {
+      padding: 1rem;
+    }
+    
+    /* Prevent horizontal scroll */
+    body {
+      overflow-x: hidden;
+    }
+    
+    /* Better text sizing */
+    .mobile-text {
+      font-size: 0.875rem;
+      line-height: 1.25rem;
+    }
+  }
+  
+  /* Prevent button text wrapping */
+  .btn-no-wrap {
+    white-space: nowrap;
+  }
+  
+  /* Mobile-first grid improvements */
+  @media (max-width: 768px) {
+    .mobile-grid-1 {
+      grid-template-columns: 1fr !important;
+    }
+  }
+}
